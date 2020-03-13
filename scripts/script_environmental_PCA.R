@@ -169,7 +169,6 @@ pca_selected = prcomp(x = environ_selected, retx = TRUE, center = TRUE, scale. =
 ## Check PCA results:
 pca_selected$rotation[1:10, 1:3] ## Loadings.
 pca_selected$x[1:10, 1:3] ## PC scores.
-View(summary(pca_selected$rotation))
 
 ## Saving PCA loadings:
 write.csv(x = pca_selected$rotation, file = paste0(path, "environmental_variables_PCA_loadings.csv"))
@@ -222,7 +221,7 @@ PC.anova = function(var_anova)
 
   ## Poshoc comparisons using Tukey's HSD test:
   ## To be run if the ANOVA is significant.
-  TukeyHSD(anova)
+  #TukeyHSD(anova)
   
   }
 

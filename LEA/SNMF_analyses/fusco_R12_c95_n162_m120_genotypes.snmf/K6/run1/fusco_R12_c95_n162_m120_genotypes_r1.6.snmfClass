@@ -1,0 +1,6 @@
+new("snmfClass", directory = "K6/run1/", snmfClass.file = "fusco_R12_c95_n162_m120_genotypes_r1.6.snmfClass", 
+    K = 6L, run = 1L, CPU = 4L, seed = 442076154L, alpha = 400, 
+    percentage = 0.05, I = 0L, iterations = 200L, entropy = TRUE, 
+    tolerance = 1e-05, crossEntropy = 0.499832116399433, ploidy = 2L, 
+    Q.input.file = "", Q.output.file = "fusco_R12_c95_n162_m120_genotypes_r1.6.Q", 
+    G.output.file = "fusco_R12_c95_n162_m120_genotypes_r1.6.G")

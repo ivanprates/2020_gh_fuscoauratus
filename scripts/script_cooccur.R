@@ -41,8 +41,8 @@ dewlap_presabs_matrix = t(input_data[, 6:25])
 
 ## Selecting test to run (each corresponding to a combination of species):
 #test_number = "test_1" ## Using all species; this analyses is basically the same below because coccur excludes species with too few occurrences.
-#test_number = "test_2" ## Using only species with more than five occurrence records.
-test_number = "test_3" ## Separating species into two groups based on relative reflectance: more and less reflective (regardless of clade or microhabitat). 
+test_number = "test_2" ## Using only species with more than five occurrence records.
+#test_number = "test_3" ## Separating species into two groups based on relative reflectance: more and less reflective (regardless of clade or microhabitat). 
 #test_number = "test_4" ## Separating species into two groups based on clade: Dactyloa and Norops (regardless of dewlap color)
 #test_number = "test_5" ## Separating species into three groups based on clade and relative dewlap reflectance: Dactyloa, Draconura less reflective, and Draconura more reflective.
 
@@ -146,7 +146,7 @@ pair(mod = cooccur_dewlaps, spp = "Anolis_fuscoauratus_YELLOW", all = FALSE)
 pair.attributes(cooccur_dewlaps)
 
 ## Visualing these percentages in a bar plot:
-pair.profile(cooccur_dewlaps)
+pair.profile(mod = cooccur_dewlaps)
 
 ## Creating new pdf file to save plot of observed versus expected co-occurrences:
 pdf(file = paste0(path, "/cooccur_", test_number, "_observed_vs_expected.pdf"), height = 10, width = 12)

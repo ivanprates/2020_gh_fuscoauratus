@@ -34,9 +34,13 @@ library(tidyr)
 library(scico)
 library(viridis)
 
-## Setting some parameters:
-r = 10 # The number of repetitions for each K.
-c = 4 # The number of computer cores you want to use.
+## Setting the number of repetitions:
+## For test purposes, used 3. Used 100 in final analyses (reported in the manuscript).
+r = 3 
+#r = 100
+
+# Setting the number of computer cores we want to use:
+c = 4 
 
 ## Picking general path, depending on which computer I'm working at:
 path = "~/Dropbox/Science/MYPAPERS_ongoing/2020_fuscoauratus/2020_gh_fuscoauratus/"
@@ -75,15 +79,18 @@ write.lfmm(gendata, paste0(input_file, "_genotypes.lfmm"))
 ## Part 2: Running genetic clustering analyses using sNMF:
 
 ## Setting a, sNMF's regularization parameter:
+## For test purposes, setting a single value.
 a = 400
 
-## Setting alpha as a loop so we can iterate over different values: 
+## For the actual analyses, setting alpha as a loop so we can iterate over different values: 
 #for (a in c(1,25,50,100,200,400,800,1600,3200)){
-#for (a in c(100,200,400,800)){
 
 ## Running sNMF:
-project.snmf = snmf(paste0(input_file, "_genotypes.lfmm"), K = 6
-                    , entropy = TRUE, ploidy = 2, alpha = a, repetitions = r, project = "new", CPU = c)
+project.snmf = snmf(paste0(input_file, "_genotypes.lfmm"), CPU = c, ploidy = 2,
+                    entropy = TRUE, alpha = a, repetitions = r, project = "new",
+                    #K = 4:6 ## Values used for testing.
+                    K = 1:12 ## Values used in manuscript.
+                    )
 
 ## Showing project structure:
 show(project.snmf)
@@ -100,7 +107,7 @@ crossEntropy = snmf_summary$crossEntropy[2,] # Using mean cross entropy across r
 bestK = names(which.min(crossEntropy))
 bestK %<>% gsub(pattern = "K = ", replacement = "", .) # removes gaps from sequences. "." denotes object when using "%<>%"
 bestK = as.integer(bestK)
-bestK = 6 ## Resulting best K (results were K = 6).
+#bestK = 6 ## Resulting best K (was K = 6).
 bestK ## View best K
 
 ## Setting a couple variables to help us name outputs down the road:
@@ -155,7 +162,7 @@ qmatrix$cluster_assign = cluster_assign$cluster_assign
 qmatrix %<>% mutate_at(paste0("Cluster_", 1:bestK), round, digits = 2)
 
 ## Now, let's add locality information (including lat-longs) to the qmatrix:
-sample_info = read.csv(file = paste0(path, "sample_information/2019-05_ddRAD_samples_fuscoauratus.csv"), header = TRUE)
+sample_info = read.csv(file = paste0(path, "sample_information/2019-05_ddRAD_samples_n164_fuscoauratus.csv"), header = TRUE)
 
 # Removing two samples not used in SNMF due to high levels of missing data.
 sample_info = subset(sample_info, ID != "H0805")
@@ -216,8 +223,6 @@ qmatrix_remelt$sNMF_cluster = factor(qmatrix_remelt$sNMF_cluster, levels = uniqu
 
 ## Let's first Select a color palette to make bar plots on the individual qscores:
 palette_name = "tokyo_mod"
-#myPalette = c("#3C1835", "#652570", "#495D8F", "#7EAC92", "#BEDA9F", "#FFFFD8") ## Setting manually.
-#myPalette = c("#3C1835", "#495D8F", "#652570", "#7EAC92", "#BEDA9F", "#FFFFD8") ## Setting manually.
 myPalette = c("#3C1835", "#652570", "#495D8F", "#BEDA9F", "#7EAC92", "#FFFFD8") ## Setting manually.
 myPalette = rev(myPalette)
 
