@@ -7,20 +7,6 @@
 ### 1. To test for reduced co-occurrence between the three major dewlap phenotypes of Anolis fuscoauratus and other sympatric anole species. 
 ### 2. To plot the results of co-occurrence analyses.
 
-### NOTES on dewlap coloration:
-### Black dewlaps are present in A. auratus.
-### Blue dewlaps are present in A. tandai, A. chrysolepis, A. scypheus.
-### Bright yellow dewlaps are present in A. punctatus, A. transversalis.
-### Orange-yellow dewlaps are present in A. planiceps, A. trachyderma.
-### Red dewlaps are present in A. ortonii, A. nasofrontalis.
-### White dewlaps are present in A. dissimilis, A. pseudotigrinus.
-### Orange-yellow, bright yellow, and white dewlaps are considered to have "more reflective" colors (A. dissimilis, A. planiceps, A. pseudotigrinus, A. punctatus, A. transversalis, A. trachyderma).
-### Red, blue, and black dewlaps are considered to have "less reflective" colors (A. auratus, A. chrysolepis,  A. nasofrontalis, A. ortonii, A. scypheus, A. tandai)
-
-### NOTES on clade composition:
-### Dactyloa clade species include A. dissimilis, A. nasofrontalis, A. punctatus, A. pseudotigrinus, A. transversalis.
-### Draconura clade species include A. auratus, A. chrysolepis, A. fuscoauratus, A. ortonii, A. planiceps, A. scypheus, A. tandai.
-
 ## PART 1: Getting ready.
 
 ## Install packages:
